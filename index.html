@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab 16</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script>
+        function validarFormulario() {
+            const nombre = document.getElementById('nombre');
+            const correo = document.getElementById('correo');
+            const imagen = document.getElementById('imagen');
+
+            
+            if (nombre.value.trim() === '') {
+                alert('Por favor, ingresa tu nombre.');
+                nombre.focus();
+                return false;
+            }
+
+            if (correo.value.trim() === '') {
+                alert('Por favor, ingresa tu correo electrónico.');
+                correo.focus();
+                return false;
+            }
+            const formatosPermitidos = ['image/jpeg', 'image/png'];
+            if (imagen.files.length > 0) {
+                const archivo = imagen.files[0];
+                if (!formatosPermitidos.includes(archivo.type)) {
+                    alert('Por favor, selecciona una imagen en formato JPG o PNG.');
+                    imagen.value = '';
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="Inicio">Inicio</a></li>
+                <li><a href="Sobre mí">Sobre mí</a>
+                    <ul>
+                        <li><a href="Nombre">Nombre</a></li>
+                        <li><a href="Apellido">Apellido</a></li>
+                    </ul>
+                </li>
+                <li><a href="Servicios">Servicios</a></li>
+                <li><a href="Contactos">Contactos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <form action="procesar_registro.php" method="post" enctype="multipart/form-data" class="Formulario">
+        <h2>¡Regístrate!</h2>
+        <br>
+        <label for="Nombres y apellidos:">Nombres y apellidos:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <br>
+        <br>
+        <label for="Gmail">Gmail:</label>
+        <br>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <br>
+        <label for="Contraseña">Contraseña:</label>
+        <br>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <br>
+        <label for="imagen">Imagen de perfil:</label>
+        <br>
+        <input type="file" id="imagen" name="imagen">
+        <br>
+        <br>
+        <button type="submit">¡Listo!</button>
+    </form>
+    <footer>
+        <p>@ Danilo Soler</p>
+    </footer>
+</body>
+
+</html>
